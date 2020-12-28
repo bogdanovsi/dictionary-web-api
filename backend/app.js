@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const todoRouter = require('./routes/todoRouter')
+const dictRouter = require('./routes/definitionRouter')
 
 const app = express()
 
@@ -13,6 +13,6 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json())
 
-app.use('/todo', todoRouter)
+app.use('/dict', dictRouter)
 
 module.exports = app

@@ -7,7 +7,7 @@ const port = 3000
 
 mongoose
 	.connect(
-		`mongodb://${process.env.HOST}:27017/todo-list`, {
+		`mongodb://${process.env.HOST}:27017/dictionary`, {
 			useNewUrlParser: true
 		}
 	)

@@ -1,7 +1,7 @@
-const Todo = require('../models/todo')
+const Definition = require('../models/definition')
 
 exports.getAllTodos = (req, res) => {
-	Todo.find().then((items) => {
+	Definition.find().then((items) => {
 		res.status(200).json(items)
 	}).catch((err) => {
 		res.status(400).json({
@@ -11,7 +11,7 @@ exports.getAllTodos = (req, res) => {
 }
 
 exports.getOneTodo = (req, res) => {
-	Todo.findOne({ _id: req.params.id }).then((item) => {
+	Definition.findOne({ title: req.params.title }).then((item) => {
 		res.status(200).json(item)
 	}).catch((err) => {
 		res.status(400).json({
@@ -21,12 +21,13 @@ exports.getOneTodo = (req, res) => {
 }
 
 exports.createTodo = (req, res) => {
-	const todo = new Todo({
+	const Definition = new Definition({
 		title: req.body.title,
+		desctiption: req.body.desctiption
 	})
-	todo.save().then(() => {
+	Definition.save().then(() => {
 		res.status(201).json({
-			message: 'Successfully created Todo',
+			message: 'Successfully save definition',
 		})
 	}).catch((err) => {
 		res.status(400).json({
@@ -36,9 +37,9 @@ exports.createTodo = (req, res) => {
 }
 
 exports.deleteTodo = (req, res) => {
-	Todo.deleteOne({ _id: req.params.id }).then(() => {
+	Todo.deleteOne({ title: req.params.title }).then(() => {
 		res.status(200).json({
-			message: 'Successfully deleted todo item',
+			message: 'Successfully deleted definition',
 		})
 	}).catch((err) => {
 		res.status(400).json({

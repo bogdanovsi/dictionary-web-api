@@ -14,4 +14,4 @@ echo Detected external IP: $EXTERNAL_IP
 echo "if incorrect, edit in build-docker.sh and rebuild !!"
 read -p "press [ENTER] to continue"
 
-docker-compose build --build-arg VUE_APP_API_URL=$EXTERNAL_IP
+docker-compose build --build-arg APP_API_URL=$EXTERNAL_IP
