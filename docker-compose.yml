@@ -9,25 +9,34 @@ services:
         restart: always
         environment:
             - HOST=mongo
+        networks:
+            - mern-app  
         ports:
             - '3000:3000'
-        depends_on: [mongo]
+        depends_on: 
+            - mongo
     mongo:
         container_name: mongo
         image: mongo
         ports:
             - '27017:27017'
+        networks:
+            - mern-app  
         volumes:
-            - ./data:/data/db
+            - mongo-data:/data/db
     frontend:
         build:
             context: ./frontend/
             dockerfile: Dockerfile
-            args: 
-                - APP_API_URL=${EXTERNAL_IP}
         container_name: frontend
         restart: always
         ports:
             - '8080:8080'
-
-        
+        networks:
+            - mern-app
+networks:
+  mern-app:
+    driver: bridge
+volumes:
+  mongo-data:
+    driver: local

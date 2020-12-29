@@ -7,13 +7,24 @@ services:
         restart: always
         environment:
             - HOST=mongo
+        networks:
+            - mern-app    
         ports:
             - '3000:3000'
-        depends_on: [mongo]
+        depends_on:
+            - mongo
     mongo:
         container_name: mongo
         image: mongo
         ports:
             - '27017:27017'
-        # volumes:
-        #     - ./data:/data/db
+        networks:
+            - mern-app    
+        volumes:
+            - mongo-data:/data/db
+networks:
+  mern-app:
+    driver: bridge
+volumes:
+  mongo-data:
+    driver: local

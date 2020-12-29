@@ -5,14 +5,18 @@ require('dotenv').config()
 
 const port = 3000
 
-mongoose
-	.connect(
-		`mongodb://${process.env.HOST}:27017/dictionary`, {
-			useNewUrlParser: true
-		}
-	)
-	.then(() => console.log(`MongoDB Connected ${`mongodb://${process.env.HOST}:27017/dictionary`}`))
-	.catch(err => console.log(err))
+const connectMongoose = () => {
+	const mongoURL = `mongodb://${process.env.HOST}:27017/dictionary`
+
+	mongoose
+		.connect(mongoURL, { useNewUrlParser: true })
+		.then(() => console.log(`MongoDB Connected ${mongoURL}`))
+		.catch(err => {
+			console.log(err)
+			setTimeout(connectMongoose, 3000);
+		})
+}
+connectMongoose();
 
 const server = http.createServer(app)
 

@@ -8,9 +8,6 @@ COPY package*.json ./
 
 RUN npm install
 
-ARG APP_API_URL
-ENV APP_API_URL $APP_API_URL
-
 COPY . .
 
 RUN npm run build

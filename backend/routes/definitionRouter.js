@@ -2,9 +2,9 @@ const express = require('express')
 const definitionCtrl = require('../controllers/definitionCtrl')
 const router = express.Router()
 
-router.get('/', definitionCtrl.getAllTodos)
-router.get('/:title', definitionCtrl.getOneTodo)
-router.post('/', definitionCtrl.createTodo)
-router.delete('/:title', definitionCtrl.deleteTodo)
+router.get('/', definitionCtrl.getAllDefinition)
+router.get('/:title', definitionCtrl.getOneDefinition)
+router.post('/', definitionCtrl.createDefinition)
+router.delete('/:title', definitionCtrl.deleteDefinition)
 
 module.exports = router
