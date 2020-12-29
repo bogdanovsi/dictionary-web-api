@@ -11,7 +11,7 @@ mongoose
 			useNewUrlParser: true
 		}
 	)
-	.then(() => console.log('MongoDB Connected'))
+	.then(() => console.log(`MongoDB Connected ${`mongodb://${process.env.HOST}:27017/dictionary`}`))
 	.catch(err => console.log(err))
 
 const server = http.createServer(app)

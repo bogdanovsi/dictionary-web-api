@@ -8,12 +8,12 @@ COPY package*.json ./
 
 RUN npm install
 
-ARG VUE_APP_API_URL
-ENV VUE_APP_API_URL $VUE_APP_API_URL
+ARG APP_API_URL
+ENV APP_API_URL $APP_API_URL
 
 COPY . .
 
 RUN npm run build
 
 EXPOSE 8080
-CMD [ "http-server", "dist" ]
+CMD [ "http-server", "build" ]
